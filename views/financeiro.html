@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Financeiro</title>
+  <link rel="stylesheet" href="css/financeiro.css">
+</head>
+<body>
+
+  <h1>Financeiro</h1>
+
+  <div class="filtros">
+    <select id="filtroStatus">
+      <option value="">Todos</option>
+      <option value="Pendente">Pendente</option>
+      <option value="Pago">Pago</option>
+      <option value="Cancelado">Cancelado</option>
+    </select>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Tipo</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Status</th>
+        <th>Ação</th>
+      </tr>
+    </thead>
+  <tbody id="tabelaFinanceiro"></tbody>
+
+  </table>
+
+  <!-- Modal de pagamento -->
+<div id="modalPagamento" class="modal-pagamento" style="display:none;">
+  <div class="modal-conteudo">
+    <h3>Escolha o método de pagamento</h3>
+    <div class="botoes-metodo">
+      <button data-metodo="Dinheiro">Dinheiro</button>
+      <button data-metodo="Cartão Crédito">Cartão Crédito</button>
+      <button data-metodo="Cartão Débito">Cartão Débito</button>
+      <button data-metodo="Pix">Pix</button>
+    </div>
+    <button id="cancelarPagamento" class="btn-cancelar">Cancelar</button>
+  </div>
+</div>
+
+
+  <script src="javascript/financeiro.js"></script>
+</body>
+</html>

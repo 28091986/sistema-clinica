@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pacientes</title>
+  <link rel="stylesheet" href="/css/pacientes.css">
+</head>
+<body>
+
+<header>
+  <h1>Pacientes</h1>
+  <button id="btnNovo">+ Novo Paciente</button>
+</header>
+
+<section>
+  <input type="text" id="busca" placeholder="Buscar paciente...">
+</section>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+        <th>Email</th>
+        <th>Rua</th>
+         <th>N°</th>
+          <th>Bairro</th>
+           <th>Cidade</th>
+            <th>Estado</th>
+        <th>Nascimento</th>
+        <th>Status</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="listaPacientes"></tbody>
+  </table>
+</div>
+
+<!-- MODAL -->
+<div id="modalPaciente" class="modal">
+  <section id="formPaciente" class="form">
+    <h2>Novo Paciente</h2>
+
+    <input type="text" id="nome" placeholder="Nome *">
+    <input type="text" id="telefone" placeholder="Telefone">
+    <input type="email" id="email" placeholder="Email">
+    <input type="text" id="rua" placeholder="Endereço">
+     <input type="text" id="numero" placeholder="Numero">
+      <input type="text" id="bairro" placeholder="Bairro">
+       <input type="text" id="cidade" placeholder="Cidade">
+        <input type="text" id="estado" placeholder="Endereço">
+
+    <label for="data_nascimento">Data de nascimento </label>
+    <input type="date" id="data_nascimento">
+
+   
+
+    <div class="acoes">
+      <button id="salvarPaciente" type="button">Salvar</button>
+      <button id="cancelarPaciente" type="button">Cancelar</button>
+    </div>
+  </section>
+</div>
+<div id="toastContainer" class="toast-container"></div>
+
+
+<script src="javascript/pacientes.js"></script>
+</body>
+</html>

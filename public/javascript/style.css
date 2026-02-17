@@ -1,0 +1,156 @@
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   VARIÁVEIS DO SISTEMA
+========================= */
+:root {
+    /* Paleta saúde */
+    --primary: #2e6b50;        /* confiança */
+    --primary-hover: #40916c;  /* ação */
+    --primary-light: #d8f3dc;  /* bem-estar */
+
+    /* Neutros */
+    --bg-card: #ffffff;
+    --text-main: #0a2210;
+    --text-secondary: #555555;
+    --border: #e5e7eb;
+}
+
+/* =========================
+   FUNDO DA PÁGINA
+========================= */
+body {
+    height: 100vh;
+    background-image: url("../img/paz.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================
+   CONTAINER / CARD
+========================= */
+.container {
+    background-color: var(--bg-card);
+    padding: 32px;
+    width: 350px;
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.card h1 {
+    margin-bottom: 25px;
+    color: var(--text-main);
+}
+
+/* =========================
+   LABEL FLUTUANTE
+========================= */
+.label-float {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.label-float input {
+    width: 100%;
+    padding: 12px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    color: var(--text-main);
+    background-color: transparent;
+}
+
+.label-float label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    color: #999;
+    font-size: 14px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    transition: 0.3s;
+    background-color: var(--bg-card);
+    padding: 0 5px;
+}
+
+/* Efeito flutuante */
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label {
+    top: -6px;
+    font-size: 12px;
+    color: var(--primary);
+}
+
+/* =========================
+   BOTÃO
+========================= */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: var(--primary);
+    color: #ffffff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* =========================
+   DIVISÓRIA
+========================= */
+hr {
+    width: 100%;
+    margin: 20px 0;
+    border: none;
+    height: 1px;
+    background-color: var(--border);
+}
+
+/* =========================
+   TEXTO INFERIOR
+========================= */
+p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+p a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   UTILITÁRIOS
+========================= */
+.justify-center {
+    display: flex;
+    justify-content: center;
+}

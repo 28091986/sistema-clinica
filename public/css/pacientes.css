@@ -1,0 +1,396 @@
+/* =========================
+   RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  background: #f4f6f8;
+  padding: 30px;
+  color: #333;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  background: #ffffff;
+  padding: 18px 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+header h1 {
+  font-size: 26px;
+  color: #2e6b50;
+}
+
+header button {
+  background: #2e6b50;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+header button:hover {
+  background:#40916c;
+}
+
+/* =========================
+   BUSCA
+========================= */
+section {
+  margin-bottom: 20px;
+}
+
+#busca {
+  width: 320px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+#busca:focus {
+  outline: none;
+  border-color: #40916c;
+  box-shadow: 0 0 0 2px #40916c;
+}
+
+/* =========================
+   TABELA
+========================= */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+thead {
+  background: #2e6b50;
+  color: #fff;
+}
+
+thead th {
+  padding: 14px;
+  text-align: left;
+  font-size: 14px;
+}
+
+tbody td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+tbody tr:hover {
+  background: #f0f4ff;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* =========================
+   STATUS (BADGES)
+========================= */
+.status {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status.regular {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status.inadimplente {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.status.bloqueado {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* =========================
+   BOTÕES DA TABELA
+========================= */
+/* =========================
+   BOTÕES DE AÇÃO NA TABELA
+========================= */
+td button {
+  border: none;
+  padding: 8px 16px;       /* mantém altura e largura visual uniforme */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  margin-right: 8px;       /* espaçamento entre os botões */
+  min-width: 80px;         /* largura mínima igual para todos */
+  text-align: center;
+  transition: 0.2s;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+/* cores */
+.btn-editar {
+  background: #28664a;
+  color: #ffffff;
+}
+
+.btn-editar:hover {
+  background: #40916c;
+}
+
+.btn-excluir {
+  background: #e81818;
+  color: #ffffff;
+}
+
+.btn-excluir:hover {
+  background: #c23616;
+}
+
+/* último botão da célula não precisa de margin */
+td button:last-child {
+  margin-right: 0;
+}
+
+
+.btn-editar:hover,
+.btn-excluir:hover {
+  opacity: 0.85;
+}
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.ativo {
+  display: flex;
+}
+
+/* =========================
+   FORMULÁRIO
+========================= */
+.form {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: slideDown 0.25s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.form h2 {
+  margin-bottom: 16px;
+  color: #1f2937;
+}
+
+/* Inputs */
+.form input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #2e6b50;
+  box-shadow: 0 0 0 2px rgba(#2e6b50);
+}
+
+/* =========================
+   AÇÕES DO FORM
+========================= */
+.form .acoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  justify-content: flex-end;
+}
+
+.form button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Salvar */
+#salvarPaciente {
+  background: #2e6b50;
+  color: #ffffff;
+}
+
+#salvarPaciente:hover {
+  background: #2e6b50;
+}
+
+/* Cancelar */
+#cancelarPaciente {
+  background: #e5e7eb;
+  color: #2e6b50;
+}
+
+#cancelarPaciente:hover {
+  background: #d1d5db;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 768px) {
+  body {
+    padding: 16px;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  #busca {
+    width: 100%;
+  }
+}
+/* =========================
+   TOAST
+========================= */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  min-width: 260px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  animation: toastSlide 0.3s ease, toastFadeOut 0.3s ease 2.7s forwards;
+}
+
+.toast.sucesso {
+  background: #16a34a;
+}
+
+.toast.erro {
+  background: #dc2626;
+}
+
+.toast.info {
+  background: #2e6b50;
+}
+
+
+/* =========================
+   LABEL PADRONIZADA
+========================= */
+.form label {
+  display: block;
+  margin: 6px 0 4px;
+  padding-left: 12px; /* 🔑 alinha com o texto do input */
+  font-size: 14px;
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+
+/* Placeholder igual à label */
+.form input::placeholder {
+  color: #9ca3af;
+  font-size: 14px;
+}
+
+/* Quando o input está em foco */
+.form input:focus::placeholder {
+  color: transparent;
+}
+
+/* Quando o input está em foco, destaca a label */
+.form input:focus + label,
+.form label:has(+ input:focus) {
+  color: #2e6b50;
+  font-weight: 600;
+}
+
+@keyframes toastSlide {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastFadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

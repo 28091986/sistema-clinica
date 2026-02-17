@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendamentos - Clínica</title>
+  <link rel="stylesheet" href="/css/agendamentos.css">
+</head>
+<body>
+
+<header>
+  <h1>Agendamentos</h1>
+  <button id="btnNovaConsulta" class="btn-primary">+ Nova Consulta</button>
+</header>
+
+<section class="filtros">
+  <input type="text" id="busca" placeholder="Buscar consulta...">
+  <input type="date" id="filtroData">
+</section>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Paciente</th>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Tipo</th>
+        <th>Especialidade</th>
+        <th>Profissional</th>
+        <th>Status</th>
+        <th>Observações</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="listaConsultas"></tbody>
+  </table>
+
+  <!-- MENU DE AÇÕES -->
+  <div id="menuAcoes" class="menu-acoes" >
+    <ul>
+      <li id="editarConsulta">Editar</li>
+      <li id="excluirConsulta">Excluir</li>
+      <li id="realizarConsulta">Realizar Consulta</li>
+    </ul>
+  </div>
+</div>
+
+<!-- MODAL CONSULTA -->
+<div id="modalConsulta" class="modal">
+  <div class="modal-content">
+    <h2>Nova Consulta</h2>
+    <form id="formConsulta">
+      <label>Paciente *</label>
+      <select id="paciente_id" required></select>
+
+      <label>Profissional*</label>
+      <select id="profissional_id" required></select>
+
+      <label>Data *</label>
+      <input type="date" id="data" required>
+
+      <label>Hora *</label>
+      <input type="time" id="hora" required>
+
+      <label>Tipo</label>
+      <select id="tipo">
+        <option value="Consulta">Consulta</option>
+        <option value="Retorno">Retorno</option>
+        <option value="Avaliação Neuropsicológica">Avaliação Neuropsicológica</option>
+         <option value="Avaliação Neuropsicológica Personalizada">Avaliação Neuropsicológica Personalizada</option>
+      </select>
+
+      <label>Status</label>
+      <select id="status">
+        <option value="Agendada">Agendada</option>
+        <option value="Realizada">Realizada</option>
+        <option value="Cancelada">Cancelada</option>
+        <option value="Faltou">Faltou</option>
+      </select>
+
+      <label>Observações</label>
+      <textarea id="observacoes" placeholder="Digite observações..."></textarea>
+
+      <div class="modal-actions">
+        <button type="submit" id="salvarConsulta">Salvar</button>
+        <button type="button" id="cancelarConsulta">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<script src="javascript/agendamentos.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Profissionais</title>
+  <link rel="stylesheet" href="/css/profissionais.css">
+</head>
+<body>
+
+<header>
+  <h1>Profissionais</h1>
+  <button id="btnNovoProfissional">Novo Profissional</button>
+</header>
+
+<table width="100%">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Especialidade</th>
+      <th>Status</th>
+      <th>Cadastrado em</th>
+    </tr>
+  </thead>
+  <tbody id="listaProfissionais"></tbody>
+</table>
+
+<!-- MODAL -->
+<div id="modalProfissional" class="modal">
+  <section class="form">
+    <h2>Novo Profissional</h2>
+
+    <label for="nome">Nome *</label>
+    <input type="text" id="nome" placeholder="Nome do profissional">
+
+    <label for="especialidade">Especialidade *</label>
+    <input type="text" id="especialidade" placeholder="Ex: Cardiologia">
+
+    <label for="ativo">Status</label>
+    <select id="ativo">
+      <option value="1">Ativo</option>
+      <option value="0">Inativo</option>
+    </select>
+
+    <label>Email *</label>
+<input type="email" id="email">
+
+<label>Senha *</label>
+<input type="password" id="senha">
+
+<label>Nível *</label>
+<select id="nivel">
+  <option value="medico">Médico</option>
+  <option value="recepcao">Recepção</option>
+  <option value="admin">Admin</option>
+</select>
+
+
+    <div class="acoes">
+      <button id="salvarProfissional" type="button">Salvar</button>
+      <button id="cancelarProfissional" type="button">Cancelar</button>
+    </div>
+  </section>
+</div>
+
+<script src="/javascript/profissionais.js"></script>
+</body>
+</html>

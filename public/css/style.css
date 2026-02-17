@@ -1,0 +1,160 @@
+/* =========================
+   RESET E BASE
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f5f6fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* =========================
+   CARD LOGIN
+========================= */
+.card {
+  background-color: #fff;
+  padding: 35px 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.card h1 {
+  margin-bottom: 30px;
+  color: #28664a;
+  font-size: 2rem;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   INPUT FLOAT LABEL
+========================= */
+.label-float {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.label-float input {
+  width: 100%;
+  padding: 12px 10px;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.label-float input:focus {
+  border-color: #40916c;
+  box-shadow: 0 0 0 2px rgba(64,145,108,0.15);
+}
+
+.label-float label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  color: #777;
+  font-size: 0.95rem;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: 0.2s;
+  background-color: #fff;
+  padding: 0 5px;
+}
+
+/* efeito flutuante */
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label {
+  top: -8px;
+  font-size: 0.75rem;
+  color: #40916c;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+.justify-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #40916c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background-color: #2d6a4f;
+}
+
+/* =========================
+   MENSAGEM
+========================= */
+#msg {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #e84118;
+  min-height: 18px;
+}
+
+/* =========================
+   LINK CADASTRO
+========================= */
+.container p {
+  margin-top: 20px;
+  font-size: 0.95rem;
+}
+
+.container a {
+  color: #40916c;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 480px) {
+  .card {
+    padding: 25px 20px;
+  }
+
+  .card h1 {
+    font-size: 1.6rem;
+  }
+}

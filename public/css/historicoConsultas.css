@@ -1,0 +1,108 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Corpo da página */
+body {
+  background-color: #f4f6f9;
+  padding: 30px;
+}
+
+/* Título */
+h1 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Container principal */
+.container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+/* Cabeçalho */
+thead {
+  background-color:#28664a;
+  color: white;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+}
+
+/* Linhas */
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+tbody td {
+  padding: 12px;
+  color: #333;
+}
+
+/* Botão */
+button {
+  background-color:#28664a;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover {
+  background-color:  #40916c;
+}
+
+/* Responsividade simples */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px;
+  }
+
+  tbody td {
+    display: block;
+    padding: 6px 0;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 3px;
+    color: #555;
+  }
+}

@@ -1,0 +1,158 @@
+/* =========================
+   RESET E ESTILOS BASE
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
+  color: #333;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #28664a;
+}
+
+header a {
+  padding: 10px 20px;
+  background-color: #40916c;
+  color: #fff;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+header a:hover {
+  background-color: #2d6a4f;
+}
+
+/* =========================
+   FILTROS
+========================= */
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 5px;
+  font-size: 1rem;
+  flex: 1;
+}
+
+/* =========================
+   TABELA
+========================= */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #2d6a4f;
+  color: #fff;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f2f6;
+  font-size: 0.95rem;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f1f2f6;
+}
+
+tbody tr:hover {
+  background-color: #e9f5ef;
+}
+
+/* =========================
+   STATUS
+========================= */
+.status {
+  font-weight: 600;
+  color: #2d6a4f;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table, tbody, tr, td {
+    display: block;
+    width: 100%;
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f1f2f6;
+    padding-bottom: 10px;
+  }
+
+  tbody td {
+    padding: 8px;
+    text-align: right;
+    position: relative;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #718093;
+    font-size: 0.8rem;
+  }
+}

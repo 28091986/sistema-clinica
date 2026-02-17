@@ -1,0 +1,428 @@
+/* =========================
+   RESET E ESTILOS BASE
+========================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  color: #28664a;
+}
+
+header button {
+  padding: 10px 20px;
+  background-color: #40916c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+header button:hover {
+  background-color: #2d6a4f;
+}
+
+/* =========================
+   FILTROS
+========================= */
+.filtros {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 1rem;
+  flex: 1;
+  transition: 0.2s;
+}
+
+.filtros input:focus,
+.filtros select:focus {
+  border-color: #40916c;
+  outline: none;
+  box-shadow: 0 0 5px rgba(64, 145, 108, 0.3);
+}
+
+/* =========================
+   TABELA
+========================= */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #2d6a4f;
+  color: #fff;
+}
+
+thead th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 500;
+}
+
+tbody td {
+  padding: 10px;
+  border-bottom: 1px solid #f1f2f6;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f1f2f6;
+}
+
+/* =========================
+   BOTÕES DE AÇÃO NA TABELA
+========================= */
+.acao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+  color: #fff;
+}
+
+.acao i {
+  margin-right: 5px; /* se usar ícones */
+}
+
+.acao.editar { background-color: #40916c; }
+.acao.editar:hover { background-color: #28664a; }
+
+.acao.excluir { background-color: #e84118; }
+.acao.excluir:hover { background-color: #c23616; }
+
+/* =========================
+   MODAL
+========================= */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(40, 102, 74, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: 0.3s;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px 25px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px; /* menor largura */
+  max-height: 90vh; /* nunca ultrapassa 90% da altura da tela */
+  overflow-y: auto; /* adiciona scroll interno se o conteúdo ultrapassar a altura */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  animation: slideDown 0.3s ease-out;
+}
+
+
+@keyframes slideDown {
+  from { transform: translateY(-30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #2f3640;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #353b48;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+  width: 100%;
+  padding: 8px 12px;
+  margin-bottom: 15px;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: 0.2s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+  border-color: #40916c;
+  box-shadow: 0 0 5px rgba(64,145,108,0.3);
+  outline: none;
+}
+
+.modal-content textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions button {
+  padding: 8px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  
+}
+
+#salvarConsulta {
+  background-color: #2d6a4f;
+  color: #fff;
+}
+
+#salvarConsulta:hover {
+  background-color: #40916c;
+}
+
+#cancelarConsulta {
+  background-color: #dcdde1;
+}
+
+#cancelarConsulta:hover {
+  background-color: #c8c8c8;
+}
+
+/* =========================
+   TOAST
+========================= */
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1100;
+}
+
+.toast {
+  background-color: #28664a;
+  color: #fff;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  opacity: 0;
+  min-width: 200px;
+  max-width: 300px;
+  transform: translateY(20px);
+  animation: slideUp 0.3s forwards;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 0.95; transform: translateY(0); }
+}
+
+.toast.sucesso { background-color: #4cd137; }
+.toast.erro { background-color: #e84118; }
+.toast.info { background-color: #00a8ff; }
+
+/* =========================
+   MENU DE AÇÕES
+========================= */
+.menu-acoes {
+  position: absolute;
+  background: #2e6b50 ;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.menu-acoes.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.menu-acoes.hide {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.menu-acoes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-acoes ul li {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.menu-acoes ul li:hover {
+  background-color:#4CAF50;
+}
+
+.btn-acao {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 600px) {
+  .modal-content { width: 90%; padding: 20px; }
+  header { flex-direction: column; gap: 10px; }
+  .filtros { flex-direction: column; }
+
+  table thead { display: none; }
+  table, tbody, tr, td { display: block; width: 100%; }
+  tbody tr { margin-bottom: 15px; border-bottom: 2px solid #f1f2f6; padding-bottom: 10px; }
+  tbody td {
+    padding: 8px;
+    text-align: right;
+    position: relative;
+  }
+  tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #718093;
+    font-size: 0.8rem;
+    width: 45%;
+    white-space: nowrap;
+  }
+}
+/* =========================
+   BOTÃO DE AÇÕES ⋮
+========================= */
+.btn-acoes {
+  background-color: #40916c;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-acoes:hover {
+  background-color: #2d6a4f;
+  transform: scale(1.1);
+}
+
+.btn-acoes:active {
+  transform: scale(0.95);
+}
+
+td[data-label="Ações"] {
+  text-align: center;
+}
+
+/* =========================
+   MENU DE AÇÕES
+========================= */
+.menu-acoes {
+  position: absolute;
+  background: #2e6b50;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  min-width: 140px;
+}
+
+.menu-acoes.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.menu-acoes.hide {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.menu-acoes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-acoes ul li {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  color: #fff;
+}
+
+.menu-acoes ul li:hover {
+  background-color: #40916c;
+  border-radius: 6px;
+}

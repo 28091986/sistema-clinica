@@ -1,0 +1,346 @@
+/* =========================
+   VARIÁVEIS DE CORES
+========================= */
+:root {
+  --verde-primario: #2e6b50;   /* confiança */
+  --verde-destaque: #40916c;   /* ação segura */
+  --verde-hover: #b7e4c7;      /* bem-estar */
+  --verde-claro: #d8f3dc;      /* paz */
+
+  --branco: #ffffff;
+  --cinza-texto: #2b2b2b;
+  --cinza-suave: #f6f7f8;
+  --borda-suave: #e5e7eb;
+}
+
+/* =========================
+   RESET BÁSICO
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* =========================
+   BODY
+========================= */
+body {
+  background: var(--cinza-suave);
+  color: var(--cinza-texto);
+}
+
+/* =========================
+   TOPO
+========================= */
+.topo {
+  position: relative;
+  height: 70px;
+  background: var(--verde-primario);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.topo h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.topo button {
+  position: absolute;
+  right: 24px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.6);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.topo button:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+.container {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+/* =========================
+   MENU LATERAL
+========================= */
+.menu {
+  width: 230px;
+  background: var(--verde-primario);
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.menu button {
+  background: transparent;
+  border: none;
+  color: #f1f5f3;
+  padding: 12px 14px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.menu button:hover {
+  background: var(--verde-hover);
+  padding-left: 20px;
+}
+
+.menu button.active {
+  background: var(--verde-destaque);
+  color: #fff;
+}
+
+/* =========================
+   CONTEÚDO PRINCIPAL
+========================= */
+.conteudo {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+}
+
+.conteudo h2 {
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--verde-primario);
+}
+
+/* =========================
+   CARDS
+========================= */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--branco);
+  padding: 22px;
+  border-radius: 14px;
+  border: 1px solid var(--borda-suave);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card h3 {
+  margin-bottom: 8px;
+  color: var(--verde-destaque);
+  font-size: 16px;
+}
+
+.card p {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* =========================
+   BOTÕES INTERNOS
+========================= */
+.conteudo button {
+  background: var(--verde-destaque);
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: var(--borda-suave)
+}
+
+.conteudo button:hover {
+  background: var(--verde-primario);
+}
+/* =========================
+   MODAL BASE
+========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.ativo {
+  display: flex;
+}
+
+/* =========================
+   CONTEÚDO DO MODAL
+========================= */
+.modal-content {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  padding: 24px 26px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeInUp 0.3s ease;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.modal-content h3 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1f2937;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+/* =========================
+   FORM
+========================= */
+#formConsulta {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================
+   LABEL
+========================= */
+#formConsulta label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+/* =========================
+   INPUTS
+========================= */
+#formConsulta input,
+#formConsulta select,
+#formConsulta textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  background: #fff;
+}
+
+#formConsulta textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* =========================
+   FOCO
+========================= */
+#formConsulta input:focus,
+#formConsulta select:focus,
+#formConsulta textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================
+   BOTÕES
+========================= */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.modal-actions button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  
+}
+
+/* Cancelar */
+#cancelarConsulta {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+#cancelarConsulta:hover {
+  background: #d1d5db;
+}
+
+/* Salvar */
+.modal-actions button[type="submit"] {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-actions button[type="submit"]:hover {
+  background: #1d4ed8;
+}
+
+/* =========================
+   ANIMAÇÃO
+========================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.dashboard-info {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.info-card {
+  background: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+  min-width: 160px;
+  text-align: center;
+}
+
+.info-card span {
+  display: block;
+  color: #666;
+  font-size: 14px;
+}
+
+.info-card strong {
+  font-size: 28px;
+  color: #333;
+}

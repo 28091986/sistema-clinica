@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Atendimento Médico</title>
+  <link rel="stylesheet" href="/css/atendimentos.css">
+</head>
+<body>
+
+<div class="container card">
+
+  <!-- =========================
+       DADOS DO PACIENTE + BOTÃO HISTÓRICO
+  ========================= -->
+  <section class="paciente-info">
+    <div class="header-paciente">
+      <h2>Atendimento Médico</h2>
+      <button id="btnHistorico" type="button" class="btn-historico">
+       Histórico de consultas
+      </button>
+    </div>
+
+    <div class="dados-paciente">
+      <!-- Dados do paciente preenchidos via JS -->
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- =========================
+       FORMULÁRIO DE ATENDIMENTO
+  ========================= -->
+  <form id="formAtendimento" style="display:none">
+
+    <!-- IDs controlados pelo JS -->
+    <input type="hidden" name="consulta_id">
+    <input type="hidden" name="paciente_id">
+
+    <div class="label-float">
+      <textarea name="queixa_principal" rows="3" placeholder=" " required></textarea>
+      <label>Queixa Principal</label>
+    </div>
+
+    <div class="label-float">
+      <textarea name="diagnostico" rows="3" placeholder=" " required></textarea>
+      <label>Diagnóstico</label>
+    </div>
+
+    <div class="label-float">
+      <textarea name="conduta" rows="3" placeholder=" "></textarea>
+      <label>Conduta</label>
+    </div>
+
+    <div class="label-float">
+      <textarea name="medicamentos" rows="3" placeholder=" "></textarea>
+      <label>Medicamentos</label>
+    </div>
+
+    <div class="label-float">
+      <textarea name="observacoes" rows="3" placeholder=" "></textarea>
+      <label>Observações</label>
+    </div>
+
+    <button type="submit">Salvar Atendimento</button>
+  </form>
+
+</div>
+
+<script src="/javascript/atendimentos.js"></script>
+</body>
+</html>
