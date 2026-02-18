@@ -31,18 +31,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 /* =========================
    SESSION
 ========================= */
+
+const isProduction = process.env.NODE_ENV === 'production';
+
 app.use(session({
   name: 'clinica.sid',
-  secret: process.env.SESSION_SECRET,
+  secret: process.env.SESSION_SECRET || 'teste123', // fallback para teste
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
-    maxAge: 1000 * 60 * 60 // 1 hora
+    secure: false,       // 🔹 força false para localhost
+    sameSite: 'lax',     // 🔹 evita bloqueio de cookies no fetch
+    maxAge: 1000 * 60 * 60
   }
 }));
+
+
 
 
 /* =========================

@@ -4,33 +4,35 @@ const msg = document.getElementById('msg');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const usuario = document.getElementById('usuario').value;
+  const email = document.getElementById('usuario').value;
   const senha = document.getElementById('senha').value;
 
-  const resposta = await fetch('http://localhost:3000/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'include', // 🔴 ESSENCIAL PARA SESSION
-    body: JSON.stringify({
-      email: usuario,
-      senha: senha
-    })
-  });
+  try {
+    const resposta = await fetch('/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include', // essencial para session
+      body: JSON.stringify({ email, senha })
+    });
 
-  const dados = await resposta.json();
+    const dados = await resposta.json();
 
-  if (dados.sucesso) {
-    msg.innerText = 'Login efetuado com sucesso ✅';
-    msg.style.color = 'green';
+    if (dados.sucesso) {
+      msg.innerText = 'Login efetuado com sucesso ✅';
+      msg.style.color = 'green';
 
-    setTimeout(() => {
-      window.location.href = '/home'; // rota protegida
-    }, 800);
+      setTimeout(() => {
+        window.location.href = '/home'; // rota protegida
+      }, 500);
 
-  } else {
-    msg.innerText = 'Usuário ou senha inválidos ❌';
+    } else {
+      msg.innerText = 'Usuário ou senha inválidos ❌';
+      msg.style.color = 'red';
+    }
+
+  } catch (erro) {
+    msg.innerText = 'Erro ao conectar ao servidor ❌';
     msg.style.color = 'red';
+    console.error('Erro fetch login:', erro);
   }
 });

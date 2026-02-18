@@ -1,5 +1,11 @@
 {
+  "name": "clinica",
+  "version": "1.0.0",
   "type": "module",
+  "main": "node.js",
+  "scripts": {
+    "start": "node node.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
