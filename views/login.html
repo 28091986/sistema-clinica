@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>LOGIN</title>
 </head>
+
 <body>
 <div class="container">
   <div class="card">
@@ -13,12 +14,12 @@
 <form id="loginForm">
   
   <div class="label-float">
-    <input type="text" id="usuario" required autocomplete="username">
+    <input type="text" id="usuario" required autocomplete="off">
     <label for="usuario">Usuário</label>
   </div>
 
   <div class="label-float">
-    <input type="password" id="senha" required autocomplete="current-password">
+    <input type="password" id="senha" required autocomplete="off">
     <label for="senha">Senha</label>
   </div>
 
@@ -39,7 +40,7 @@
   </p>
 </div>
 
-
+<script type="module" src="/javascript/security.js"></script>
 
 <script src="javascript/login.js"></script>
 

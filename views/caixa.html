@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Financeiro</title>
+  <link rel="stylesheet" href="/css/caixa.css">
+</head>
+
+<script type="module" src="/javascript/security.js"></script>
+
+<body>
+
+  <h1>Financeiro</h1>
+
+  <!-- ================= ABERTURA CAIXA ================= -->
+  <div id="blocoAbrirCaixa" class="card-caixa">
+
+    <h2>Abrir Caixa</h2>
+
+    <label>Saldo Inicial (R$)</label>
+    <input type="number" id="saldoInicial" step="0.01" min="0" placeholder="0.00">
+
+    <button id="btnAbrirCaixa">Abrir Caixa</button>
+
+  </div>
+
+
+  <!-- ================= FINANCEIRO ================= -->
+  <div id="blocoFinanceiro" style="display:none;">
+
+    <div class="caixa-info">
+      <p><strong>Caixa ID:</strong> <span id="caixaId"></span></p>
+      <p><strong>Operador:</strong> <span id="usuarioCaixa"></span></p>
+      <p><strong>Saldo Inicial:</strong> R$ <span id="saldoInicialCaixa"></span></p>
+    </div>
+
+    <div class="pagamento-form">
+
+      <label>Lançamento Financeiro</label>
+      <select id="lancamentoFinanceiro">
+        <option value="">Selecione</option>
+      </select>
+
+      <label>Valor a Pagar (R$)</label>
+      <input type="number" id="valorPago" readonly>
+
+      <label>Valor Recebido (R$)</label>
+      <input type="number" id="valorRecebido" step="0.01">
+
+      <label>Método</label>
+      <select id="metodoPagamento">
+        <option value="">Selecione</option>
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão de Débito">Cartão de Débito</option>
+        <option value="Cartão de Crédito">Cartão de Crédito</option>
+      </select>
+
+      <button id="btnRegistrarPagamento">Registrar Pagamento</button>
+      <button id="btnFecharCaixa">Fechar Caixa</button>
+
+      <p id="mensagem"></p>
+
+    </div>
+
+  </div>
+
+  <script type="module" src="/javascript/caixa.js"></script>
+
+</body>
+</html>

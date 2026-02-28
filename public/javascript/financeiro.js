@@ -46,7 +46,7 @@ async function carregarFinanceiro(statusFiltro) {
       tbody.innerHTML = `<tr><td colspan="6">Nenhum registro encontrado.</td></tr>`;
       return;
     }
-
+     
     dados.forEach(f => {
       const tr = document.createElement('tr');
       tr.innerHTML = `

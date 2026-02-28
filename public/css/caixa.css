@@ -1,0 +1,188 @@
+/* ===============================
+   RESET GLOBAL
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: #2e6b50;
+  padding: 40px;
+  color: #2e6b50;
+}
+
+/* ===============================
+   TÍTULO PRINCIPAL
+================================ */
+h1 {
+  margin-bottom: 30px;
+  font-size: 60px;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: #000000;
+  
+}
+
+/* ===============================
+   CARDS
+================================ */
+.card-caixa,
+.pagamento-form,
+.caixa-info {
+  background: rgb(255, 255, 255);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid#000000;
+  box-shadow: 0 8px 24px rgba(12, 12, 12, 0.04);
+  margin-bottom: 30px;
+  transition: 0.2s ease;
+}
+
+.card-caixa:hover,
+.pagamento-form:hover,
+.caixa-info:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* ===============================
+   SUBTÍTULOS
+================================ */
+h2 {
+  margin-bottom: 25px;
+  font-size: 25px;
+  font-weight: 700;
+  color: #000000;
+}
+
+/* ===============================
+   CAMPOS
+================================ */
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: 18px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #161616;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #2e6b50;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(137, 248, 180, 0.15);
+}
+
+/* ===============================
+   BOTÕES
+================================ */
+button {
+  margin-top: 22px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+}
+
+/* Primário */
+#btnAbrirCaixa {
+  background: #15803d;
+  color: #ffffff;
+}
+
+#btnAbrirCaixa:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+/* Sucesso */
+#btnRegistrarPagamento {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+#btnRegistrarPagamento:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+/* Perigo */
+#btnFecharCaixa {
+  background: #dc2626;
+  color: #ffffff;
+  margin-left: 12px;
+}
+
+#btnFecharCaixa:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   INFORMAÇÕES DO CAIXA
+================================ */
+.caixa-info p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: rgb(165, 37, 37);
+  font-weight: 600;
+  
+}
+
+.caixa-info strong {
+ 
+  color: #000000;
+  font-weight: 600;
+   font-size: 16px;
+}
+
+
+
+/* ===============================
+   MENSAGEM
+================================ */
+#mensagem {
+  margin-top: 18px;
+  font-weight: 600;
+  font-size: 14px;
+  color: #16a34a;
+}
+
+/* ===============================
+   RESPONSIVO
+================================ */
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .card-caixa,
+  .pagamento-form,
+  .caixa-info {
+    padding: 20px;
+  }
+
+  button {
+    width: 100%;
+    margin-left: 0 !important;
+  }
+}

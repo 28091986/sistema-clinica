@@ -36,6 +36,10 @@ case 'financeiro':
       window.location.href = '/financeiro';
   break;
 
+  case 'caixa':
+    window.location.href = '/caixa';
+    break;
+
 
     case 'configuracoes':
       conteudo.innerHTML = `

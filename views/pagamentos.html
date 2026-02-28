@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pagamentos</title>
+  <link rel="stylesheet" href="/css/pagamentos.css">
+</head>
+<script type="module" src="/javascript/security.js"></script>
+<body>
+  <h1>Pagamentos</h1>
+
+  <div class="caixa-info">
+    <p><strong>Caixa ID:</strong> <span id="caixaId"></span></p>
+    <p><strong>Operador:</strong> <span id="usuarioCaixa"></span></p>
+    <p><strong>Saldo Inicial:</strong> R$ <span id="saldoInicialCaixa"></span></p>
+  </div>
+
+  
+
+  <div class="pagamento-form">
+    <label for="lancamentoFinanceiro">Lançamento Financeiro</label>
+    <select id="lancamentoFinanceiro">
+      <option value="">Selecione um lançamento</option>
+    </select>
+   
+    <input type="hidden" id="caixaId" value="">
+    <input type="hidden" id="usuarioCaixa" value="">
+    <label for="valorPago">Valor a Pagar (R$)</label>
+    <input type="number" id="valorPago" readonly placeholder="0.00">
+
+    <label for="valorRecebido">Valor Recebido (R$)</label>
+    <input type="number" id="valorRecebido" step="0.01" min="0" placeholder="0.00">
+
+    <label for="metodoPagamento">Método de Pagamento</label>
+    <select id="metodoPagamento">
+      <option value="">Selecione</option>
+      <option value="Dinheiro">Dinheiro</option>
+      <option value="Cartão de Débito">Cartão de Débito</option>
+      <option value="Cartão de Crédito">Cartão de Crédito</option>
+    </select>
+
+    <button id="btnRegistrarPagamento">Registrar Pagamento</button>
+    <p id="mensagem" class="mensagem"></p>
+  </div>
+
+  <script type="module" src="/javascript/pagamentos.js"></script>
+</body>
+</html>
