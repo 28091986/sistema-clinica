@@ -3,8 +3,18 @@ dotenv.config();
 
 import mysql from 'mysql2/promise';
 
-// Usa a URL completa do Railway
-const db = mysql.createPool(process.env.MYSQL_URL);
+const dbUrl = new URL(process.env.MYSQL_URL);
+
+const db = mysql.createPool({
+  host: dbUrl.hostname,
+  user: dbUrl.username,
+  password: dbUrl.password,
+  database: dbUrl.pathname.slice(1), // remove a barra inicial
+  port: dbUrl.port,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+});
 
 db.getConnection()
   .then(conn => {
