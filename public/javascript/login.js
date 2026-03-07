@@ -69,3 +69,14 @@ btnLogout.addEventListener('click', async () => {
     msgLogout.style.color = 'red';
   }
 });
+fetch('/api/login/me', { credentials: 'include' })
+  .then(res => res.json())
+  .then(usuario => {
+    const botao = document.getElementById('btnNovoProfissional');
+    if (usuario.nivel !== 'admin') {
+      botao.disabled = true;
+      botao.style.opacity = '0.5';
+      botao.style.cursor = 'not-allowed';
+      botao.title = 'Apenas administradores podem cadastrar profissionais';
+    }
+  });

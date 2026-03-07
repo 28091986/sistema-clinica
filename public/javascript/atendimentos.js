@@ -1,4 +1,5 @@
 let pacienteIdGlobal = null;
+let usuarioLogado = null; // 🔥 Guarda o usuário logado
 
 /* =========================
    FORMATAR DATA
@@ -11,8 +12,7 @@ function formatarData(data) {
 /* =========================
    INICIALIZAÇÃO
 ========================= */
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener('DOMContentLoaded', async () => {
   const partes = window.location.pathname.split('/');
   const consultaId = partes[partes.length - 1];
 
@@ -24,16 +24,29 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  carregarAtendimento(consultaId);
+  try {
+    // 🔥 Buscar usuário logado
+    const resUsuario = await fetch('/api/login/me', { credentials: 'include' });
+    usuarioLogado = await resUsuario.json();
 
-  const form = document.getElementById('formAtendimento');
-  if (form) {
-    form.addEventListener('submit', salvarAtendimento);
-  }
+    carregarAtendimento(consultaId);
 
-  const btnHistorico = document.getElementById('btnHistorico');
-  if (btnHistorico) {
-    btnHistorico.addEventListener('click', abrirHistorico);
+    const form = document.getElementById('formAtendimento');
+    if (form) {
+      form.addEventListener('submit', salvarAtendimento);
+    }
+
+    const btnHistorico = document.getElementById('btnHistorico');
+    if (btnHistorico) {
+      btnHistorico.addEventListener('click', abrirHistorico);
+    }
+
+  } catch (err) {
+    console.error('Erro ao obter usuário logado:', err);
+    document.body.innerHTML = `
+      <h2>Erro</h2>
+      <p>Não foi possível identificar o usuário logado.</p>
+    `;
   }
 });
 
@@ -54,8 +67,7 @@ function abrirHistorico() {
 ========================= */
 async function carregarAtendimento(consultaId) {
   try {
-
-    /* Buscar consulta */
+    // Buscar consulta
     const resConsulta = await fetch(`/api/consultas/${consultaId}`, {
       credentials: 'include'
     });
@@ -64,21 +76,24 @@ async function carregarAtendimento(consultaId) {
 
     const consulta = await resConsulta.json();
 
-    // 🔥 GUARDA O PACIENTE AQUI
+    // 🔥 Guarda paciente
     pacienteIdGlobal = consulta.paciente_id;
 
     preencherDadosPaciente(consulta);
 
-    /* Se já estiver realizada, bloqueia */
-    if (consulta.status?.toLowerCase() === 'realizada') {
+    // 🔒 Bloquear se usuário não for admin ou profissional responsável
+    const podeEditar = usuarioLogado.nivel === 'admin' || usuarioLogado.profissional_id === consulta.profissional_id;
+
+    // Se já realizada ou usuário sem permissão, bloqueia
+    if (consulta.status?.toLowerCase() === 'realizada' || !podeEditar) {
       bloquearAcoes();
+      if (!podeEditar) {
+        alert('Você não tem permissão para editar este atendimento.');
+      }
     }
 
-    /* Buscar atendimento */
-    const resAtendimento = await fetch(
-      `/api/atendimentos/consulta/${consultaId}`,
-      { credentials: 'include' }
-    );
+    // Buscar atendimento existente
+    const resAtendimento = await fetch(`/api/atendimentos/consulta/${consultaId}`, { credentials: 'include' });
 
     if (resAtendimento.ok) {
       const atendimento = await resAtendimento.json();

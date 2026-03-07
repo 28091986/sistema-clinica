@@ -9,7 +9,7 @@
 }
 
 body {
-  background-color: #f5f6fa;
+  background-color: #2e6b50;
   color: #333;
   min-height: 100vh;
   display: flex;
@@ -21,18 +21,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 header h1 {
-  font-size: 1.8rem;
-  color: #28664a;
+  font-size: 2.8rem;
+  color: #ffffff;
 }
 
 header button {
   padding: 10px 20px;
   background-color: #40916c;
   color: #fff;
+  margin-top: 30px;
   border: none;
   border-radius: 6px;
   font-size: 1rem;
@@ -53,13 +54,21 @@ header button:hover {
   margin-bottom: 15px;
 }
 
-.filtros input,
 .filtros select {
+  flex: 1; /* ocupa o espaço restante */
   padding: 8px 12px;
   border: 1px solid #dcdde1;
   border-radius: 6px;
   font-size: 1rem;
-  flex: 1;
+  transition: 0.2s;
+}
+
+.filtros input {
+  flex: 0 0 450px; /* largura fixa de 80px */
+  padding: 8px 12px;
+  border: 1px solid #dcdde1;
+  border-radius: 6px;
+  font-size: 1rem;
   transition: 0.2s;
 }
 
@@ -86,7 +95,7 @@ table {
 }
 
 thead {
-  background-color: #2d6a4f;
+  background-color: #17ad6a;
   color: #fff;
 }
 

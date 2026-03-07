@@ -9,7 +9,7 @@ const db = mysql.createPool({
   host: dbUrl.hostname,
   user: dbUrl.username,
   password: dbUrl.password,
-  database: dbUrl.pathname.slice(1), // remove a barra inicial
+  database: dbUrl.pathname.slice(1), 
   port: dbUrl.port,
   waitForConnections: true,
   connectionLimit: 10,

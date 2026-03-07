@@ -4,7 +4,9 @@ import bcrypt from 'bcrypt';
 
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+
+
+router.post('/',  async (req, res) => {
   try {
     const { email, senha } = req.body;
 
@@ -73,12 +75,27 @@ router.get('/sessao', (req, res) => {
 
 router.post('/logout', (req, res) => {
   req.session.destroy(() => {
+
     res.clearCookie('clinica.sid');
-    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0');
-    res.set('Pragma', 'no-cache');
-    res.set('Expires', '0');
-    res.redirect('/login'); // redireciona direto
+
+    res.set({
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
+
+    return res.json({ sucesso: true });
+
   });
+});
+
+// Checar se tem sessão ativa
+router.get('/me', (req, res) => {
+  if (req.session.usuario) {
+    return res.json(req.session.usuario); // devolve usuário logado
+  } else {
+    return res.status(401).json({ erro: 'Não autenticado' });
+  }
 });
 
 export default router;

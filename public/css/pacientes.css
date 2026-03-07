@@ -12,22 +12,25 @@
    BODY
 ========================= */
 body {
-  background: #f4f6f8;
+  background: #2e6b50;
   padding: 30px;
-  color: #333;
+  color: #000000;
 }
 
 /* =========================
    HEADER
 ========================= */
 header {
+  width: 96%;
   background: #ffffff;
   padding: 18px 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+  box-shadow: 0 14px 10px rgba(0,0,0,0.06);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 40px;
+  margin-left: 40px;
   margin-bottom: 25px;
 }
 
@@ -55,7 +58,8 @@ header button:hover {
    BUSCA
 ========================= */
 section {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+  margin-left: 40px;
 }
 
 #busca {
@@ -80,16 +84,17 @@ section {
 }
 
 table {
-  width: 100%;
+  width: 96%;
   border-collapse: collapse;
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  margin-left: 40px;
 }
 
 thead {
-  background: #2e6b50;
+  background: #17ad6a;
   color: #fff;
 }
 

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import db from './database/db.js';
 import { verificarLogin, verificarPermissao } from './middlewares/auth.js';
 
+
 dotenv.config();
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -31,6 +32,9 @@ app.use(session({
     maxAge: 1000 * 60 * 60
   }
 }));
+
+
+
 
 /* ========== CACHE ========== */
 // Middleware para evitar cache em páginas protegidas
@@ -103,6 +107,9 @@ import pagamentosRoutes from './routes/pagamentos.js';
 
 import recibosRoutes from './routes/recibos.js'
 
+import meRoutes from './routes/me.js';
+
+
 app.use('/api/login', loginRoutes);
 app.use('/api/pacientes', pacientesRoutes);
 app.use('/api/profissionais', profissinaisRouter);
@@ -112,6 +119,8 @@ app.use('/api/financeiro', financeiroRoutes);
 app.use('/api/caixa', caixaRoutes);
 app.use('/api/pagamentos', pagamentosRoutes);
 app.use('/api/recibos', recibosRoutes);
+
+app.use('/api/me', meRoutes);
 
 /* ========== SERVER ========== */
 const PORT = process.env.PORT || 3000;

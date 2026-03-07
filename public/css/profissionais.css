@@ -12,7 +12,7 @@
    BODY
 ========================= */
 body {
-  background: #f4f6f8;
+  background: #2e6b50;
   padding: 30px;
   color: #333;
 }
@@ -89,7 +89,7 @@ table {
 }
 
 thead {
-  background: #2e6b50;
+  background: #17ad6a;
   color: #fff;
 }
 
