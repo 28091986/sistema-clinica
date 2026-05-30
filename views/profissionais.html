@@ -1,68 +1,116 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Profissionais</title>
-  <link rel="stylesheet" href="/css/profissionais.css">
-</head>
-<script type="module" src="/javascript/security.js"></script>
-<body>
+<div class="profissionais-page">
 
-<header>
-  <h1>Profissionais</h1>
-  <button id="btnNovoProfissional">Novo Profissional</button>
-</header>
+  <header class="prof-header">
+    <h1>Profissionais</h1>
 
-<table width="100%">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Especialidade</th>
-      <th>Status</th>
-      <th>Cadastrado em</th>
-    </tr>
-  </thead>
-  <tbody id="listaProfissionais"></tbody>
-</table>
+    <button
+      id="btnNovoProfissional"
+      class="prof-btn-novo"
+      type="button">
+      Novo Profissional
+    </button>
+  </header>
 
-<!-- MODAL -->
-<div id="modalProfissional" class="modal">
-  <section class="form">
-    <h2>Novo Profissional</h2>
+  <table class="prof-table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Especialidade</th>
+        <th>Status</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="listaProfissionais"></tbody>
+  </table>
 
-    <label for="nome">Nome *</label>
-    <input type="text" id="nome" placeholder="Nome do profissional">
+  <!-- MODAL -->
+  <div id="modalProfissional" class="prof-modal">
 
-    <label for="especialidade">Especialidade *</label>
-    <input type="text" id="especialidade" placeholder="Ex: Cardiologia">
+    <form class="prof-form" autocomplete="off">
 
-    <label for="ativo">Status</label>
-    <select id="ativo">
-      <option value="1">Ativo</option>
-      <option value="0">Inativo</option>
-    </select>
+      <h2>Novo Profissional</h2>
 
-    <label>Email *</label>
-<input type="email" id="email">
+      <div class="prof-group">
+        <label for="profNome">Nome *</label>
+        <input
+          id="profNome"
+          name="nome"
+          type="text"
+          class="prof-input-nome"
+          autocomplete="off">
+      </div>
 
-<label>Senha *</label>
-<input type="password" id="senha">
+      <div class="prof-group">
+        <label for="profEspecialidade">Especialidade *</label>
+        <input
+          id="profEspecialidade"
+          name="especialidade"
+          type="text"
+          class="prof-input-especialidade"
+          autocomplete="off">
+      </div>
 
-<label>Nível *</label>
-<select id="nivel">
-  <option value="medico">Médico</option>
-  <option value="recepcao">Recepção</option>
-  <option value="admin">Admin</option>
-</select>
+      <div class="prof-group">
+        <label for="profStatus">Status</label>
+        <select
+          id="profStatus"
+          name="ativo"
+          class="prof-select-ativo">
 
+          <option value="1">Ativo</option>
+          <option value="0">Inativo</option>
+        </select>
+      </div>
 
-    <div class="acoes">
-      <button id="salvarProfissional" type="button">Salvar</button>
-      <button id="cancelarProfissional" type="button">Cancelar</button>
-    </div>
-  </section>
+      <div class="prof-group">
+        <label for="profEmail">Email *</label>
+        <input
+          id="profEmail"
+          name="email"
+          type="email"
+          class="prof-input-email"
+          autocomplete="off">
+      </div>
+
+      <div class="prof-group">
+        <label for="profSenha">Senha *</label>
+        <input
+          id="profSenha"
+          name="senha"
+          type="password"
+          class="prof-input-senha"
+          autocomplete="new-password">
+      </div>
+
+      <div class="prof-group">
+        <label for="profNivel">Nível *</label>
+        <select
+          id="profNivel"
+          name="nivel"
+          class="prof-select-nivel">
+
+          <option value="profissional">Profissional</option>
+          <option value="recepcao">Recepção</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+     <div class="prof-form-acoes">
+  <button
+    type="button"
+    class="prof-btn-cancelar">
+    Cancelar
+  </button>
+
+  <button
+    type="button"
+    class="prof-btn-salvar"
+    data-id="">
+    Salvar
+  </button>
 </div>
+      </div>
 
-<script src="/javascript/profissionais.js"></script>
-</body>
-</html>
+    </form>
+  </div>

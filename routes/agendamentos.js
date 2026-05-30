@@ -197,4 +197,64 @@ router.patch('/:id', verificarLogin, async (req, res) => {
   }
 });
 
+// ATUALIZAR CONSULTA COMPLETA
+router.put('/:id', verificarLogin, async (req, res) => {
+    const { id } = req.params;
+    const { paciente_id, profissional_id, data, hora, tipo, status, observacoes } = req.body;
+    const usuarioLogado = req.session.usuario;
+
+    try {
+        // 1. Busca a consulta para validar o dono
+        const [consulta] = await db.query('SELECT profissional_id FROM consultas WHERE id = ?', [id]);
+
+        if (consulta.length === 0) {
+            return res.status(404).json({ erro: 'Consulta não encontrada' });
+        }
+
+        // 2. Validação: Só o dono ou um Admin pode editar
+        if (consulta[0].profissional_id !== usuarioLogado.id && usuarioLogado.nivel !== 'admin') {
+            return res.status(403).json({ erro: 'Você não tem permissão para editar esta consulta.' });
+        }
+
+        const valor = obterValorPorTipo(tipo);
+
+        await db.query(`
+            UPDATE consultas 
+            SET paciente_id = ?, profissional_id = ?, data = ?, hora = ?, tipo = ?, valor = ?, status = ?, observacoes = ?
+            WHERE id = ?
+        `, [paciente_id, profissional_id, data, hora, tipo, valor, status, observacoes, id]);
+
+        res.json({ sucesso: true, mensagem: 'Consulta atualizada com sucesso' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: 'Erro interno ao atualizar' });
+    }
+});
+
+// EXCLUIR CONSULTA
+router.delete('/:id', verificarLogin, async (req, res) => {
+    const { id } = req.params;
+    const usuarioLogado = req.session.usuario;
+
+    try {
+        const [consulta] = await db.query('SELECT profissional_id FROM consultas WHERE id = ?', [id]);
+
+        if (consulta.length === 0) {
+            return res.status(404).json({ erro: 'Consulta não encontrada' });
+        }
+
+        // Validação de posse
+        if (consulta[0].profissional_id !== usuarioLogado.id && usuarioLogado.nivel !== 'admin') {
+            return res.status(403).json({ erro: 'Acesso negado: você não é o dono desta consulta.' });
+        }
+
+        await db.query('DELETE FROM consultas WHERE id = ?', [id]);
+        res.json({ sucesso: true, mensagem: 'Consulta excluída' });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ erro: 'Erro ao excluir consulta' });
+    }
+});
 export default router;

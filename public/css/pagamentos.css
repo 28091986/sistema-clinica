@@ -1,134 +1,127 @@
-/* ========================
-   RESET E ESTILO BASE
-======================== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* ==========================================================================
+   MÓDULO DE GESTÃO DE CAIXA (SISTEMA DE STATUS)
+   ========================================================================== */
+
+.modulo-caixa-gestao {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
 }
 
-body {
-  background-color: #f4f4f9;
-  color: #333;
-  padding: 20px;
+/* Indicador de Status (Aberto/Fechado) */
+.status-badge-caixa {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px;
+    border-radius: 8px;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #2c3e50;
+.status-caixa-aberto { 
+    color: var(--verde-primario); 
+    background: var(--verde-claro);
+    border: 1px solid var(--verde-destaque);
 }
 
-h2 {
-  margin-bottom: 15px;
-  color: #34495e;
+.status-caixa-fechado { 
+    color: var(--vermelho-erro); 
+    background: #fee2e2;
+    border: 1px solid #f87171;
 }
 
-/* ========================
-   STATUS E CARDS
-======================== */
-.status-caixa {
-  text-align: center;
-  margin-bottom: 25px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: #27ae60;
+/* Card de Operação (Abertura/Fechamento) */
+.card-operacao {
+    background-color: var(--branco);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--sombra-card);
+    border: 1px solid var(--borda-suave);
+    transition: transform 0.3s ease;
 }
 
-.card-caixa {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 25px;
-  margin: 0 auto 20px auto;
-  max-width: 450px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.card-operacao h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--verde-primario);
+    font-size: 1.4rem;
 }
 
-.card-caixa:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+/* Campos de Valor */
+.campo-moeda {
+    position: relative;
+    margin-bottom: 25px;
 }
 
-/* ========================
-   INPUTS
-======================== */
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
-  color: #34495e;
+.campo-moeda label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: var(--cinza-texto);
+    font-size: 0.9rem;
 }
 
-input[type="number"] {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+.campo-moeda input {
+    width: 100%;
+    padding: 14px 15px;
+    border: 2px solid var(--borda-suave);
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--verde-primario);
+    background: var(--cinza-suave);
+    transition: all 0.2s ease;
 }
 
-input[type="number"]:focus {
-  border-color: #2980b9;
-  box-shadow: 0 0 5px rgba(41,128,185,0.4);
-  outline: none;
+.campo-moeda input:focus {
+    border-color: var(--verde-destaque);
+    background: var(--branco);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(64, 145, 108, 0.1);
 }
 
-/* ========================
-   BOTÕES
-======================== */
-button {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  color: #fff;
-  background-color: #2980b9;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+/* Botões de Ação */
+.btn-caixa-acao {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
 }
 
-button:hover {
-  background-color: #3498db;
-  transform: translateY(-2px);
+.btn-abrir-fluxo { background-color: var(--verde-primario); color: #fff; }
+.btn-fechar-fluxo { background-color: var(--vermelho-erro); color: #fff; }
+
+.btn-caixa-acao:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-button:active {
-  transform: translateY(0);
+/* Informações de Resumo */
+.resumo-caixa-lista {
+    margin-top: 20px;
+    padding: 15px;
+    background: var(--cinza-suave);
+    border-radius: 10px;
 }
 
-/* ========================
-   INFORMAÇÕES DO CAIXA ABERTO
-======================== */
-#caixaAbertoContainer p {
-  font-size: 1rem;
-  margin-bottom: 10px;
-}
-
-#caixaAbertoContainer span {
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-/* ========================
-   RESPONSIVO
-======================== */
-@media (max-width: 500px) {
-  .card-caixa {
-    padding: 20px;
-    margin: 0 10px 20px 10px;
-  }
-
-  h1 {
-    font-size: 1.8rem;
-  }
-
-  button {
+.resumo-caixa-lista p {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
     font-size: 0.95rem;
-  }
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.resumo-caixa-lista span {
+    font-weight: 700;
+    color: var(--verde-primario);
 }

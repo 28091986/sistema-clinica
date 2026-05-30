@@ -79,4 +79,4 @@ fetch('/api/login/me', { credentials: 'include' })
       botao.style.cursor = 'not-allowed';
       botao.title = 'Apenas administradores podem cadastrar profissionais';
     }
-  });
+  }); 

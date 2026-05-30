@@ -1,108 +1,124 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+/* ==========================================================================
+   MÓDULO DE LISTAGEM GERAL (CONSULTAS, PACIENTES, ETC.)
+   ========================================================================== */
+
+/* Container que envolve a tabela e o título */
+.modulo-listagem {
+    background: var(--branco);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: var(--sombra-leve);
+    margin: 10px;
 }
 
-/* Corpo da página */
-body {
-  background-color: #f4f6f9;
-  padding: 30px;
+/* Título da Seção */
+.modulo-listagem h1 {
+    margin-bottom: 25px;
+    color: var(--verde-primario);
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-left: 5px solid var(--verde-destaque);
+    padding-left: 15px;
 }
 
-/* Título */
-h1 {
-  margin-bottom: 20px;
-  color: #2c3e50;
+/* Estrutura da Tabela Blindada */
+.modulo-listagem table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 
-/* Container principal */
-.container {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+/* Cabeçalho com o Verde do Sistema */
+.modulo-listagem thead {
+    background-color: var(--verde-primario);
+    color: var(--branco);
 }
 
-/* Tabela */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
+.modulo-listagem thead th {
+    padding: 14px;
+    text-align: left;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Cabeçalho */
-thead {
-  background-color:#28664a;
-  color: white;
+/* Estilo das Células */
+.modulo-listagem tbody tr {
+    border-bottom: 1px solid var(--borda-suave);
+    transition: background 0.2s ease;
 }
 
-thead th {
-  padding: 12px;
-  text-align: left;
-  font-weight: bold;
+.modulo-listagem tbody tr:hover {
+    background-color: #f2f9f5; /* Verde bem suave no hover */
 }
 
-/* Linhas */
-tbody tr {
-  border-bottom: 1px solid #e0e0e0;
-  transition: background 0.2s ease;
+.modulo-listagem tbody td {
+    padding: 14px;
+    color: var(--cinza-texto);
+    font-size: 0.95rem;
 }
 
-tbody tr:hover {
-  background-color: #f2f2f2;
-}
-
-tbody td {
-  padding: 12px;
-  color: #333;
-}
-
-/* Botão */
-button {
-  background-color:#28664a;
-  border: none;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.2s ease;
-}
-
-button:hover {
-  background-color:  #40916c;
-}
-
-/* Responsividade simples */
-@media (max-width: 768px) {
-  table {
-    font-size: 14px;
-  }
-
-  thead {
-    display: none;
-  }
-
-  tbody tr {
-    display: block;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
+/* Botões de Ação dentro da Tabela */
+.modulo-listagem .btn-acao {
+    background-color: var(--verde-primario);
+    border: none;
+    color: var(--branco);
+    padding: 8px 14px;
     border-radius: 6px;
-    padding: 10px;
-  }
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
 
-  tbody td {
-    display: block;
-    padding: 6px 0;
-  }
+.modulo-listagem .btn-acao:hover {
+    background-color: var(--verde-destaque);
+    transform: translateY(-1px);
+}
 
-  tbody td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    display: block;
-    margin-bottom: 3px;
-    color: #555;
-  }
+/* Responsividade Aprimorada */
+@media (max-width: 768px) {
+    .modulo-listagem {
+        padding: 15px;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .modulo-listagem thead {
+        display: none; /* Esconde cabeçalho no mobile */
+    }
+
+    .modulo-listagem tbody tr {
+        display: block;
+        background: var(--branco);
+        margin-bottom: 20px;
+        border: 1px solid var(--borda-suave);
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: var(--sombra-leve);
+    }
+
+    .modulo-listagem tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #f9f9f9;
+        text-align: right;
+    }
+
+    .modulo-listagem tbody td:last-child {
+        border-bottom: none;
+        margin-top: 10px;
+        justify-content: center;
+    }
+
+    /* Label do dado (ex: Nome:, Data:) */
+    .modulo-listagem tbody td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: var(--verde-primario);
+        text-transform: uppercase;
+        font-size: 0.75rem;
+    }
 }

@@ -2,37 +2,76 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Sistema - Clínica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema Clínica Integrada - SPA</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <link rel="stylesheet" href="css/home.css">
-</head>
-<script type="module" src="/javascript/security.js"></script>
-<body>
+  <link rel="stylesheet" href="css/pacientes.css"> 
+  <link rel="stylesheet" href="css/agendamentos.css">
+  <link rel="stylesheet" href="css/atendimentos.css">
+  <link rel="stylesheet" href="css/financeiro.css">
+  <link rel="stylesheet" href="css/profissionais.css"> <link rel="stylesheet" href="css/caixa.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head> <body class="home">
 
   <header class="topo">
-    <h1 id="msg">Bem-vindo ao Sistema da Clínica</h1>
+    <h1 id="msg">Clínica Integrada</h1>
+<div class="user-area">
+    <span id="nomeUsuario"></span>
     <button id="logout">Sair</button>
+</div>
   </header>
 
   <div class="container">
+  <aside class="menu">
+  <nav>
+    <button class="nav-item" data-page="dashboard">
+      <i class="fa-solid fa-chart-line"></i> <span>Início</span>
+    </button>
+    
+    <button class="nav-item" data-page="pacientes">
+      <i class="fa-solid fa-user-doctor"></i> <span>Pacientes</span>
+    </button>
+    
+    <button class="nav-item" data-page="agendamentos">
+      <i class="fa-solid fa-calendar-check"></i> <span>Agendamentos</span>
+    </button>
 
-    <aside class="menu">
-     
-      <button data-page="pacientes">👤 <span>Pacientes</span></button>
-      <button data-page="agendamentos">📅 <span>Agendamentos</span></button>
-      <button data-page="historico">🩺 <span>historico</span></button>
-      <button data-page="profissionais">👨‍⚕️ <span>Profissionais</span></button>
-      <button data-page="financeiro">💰 <span>Financeiro</span></button>
-        <button data-page="caixa">💰 <span>Caixa</span></button>
-      <button data-page="configuracoes">⚙️ <span>Configurações</span></button>
-    </aside>
+    <button class="nav-item" data-page="profissionais">
+      <i class="fa-solid fa-user-tie"></i> <span>Profissionais</span>
+    
+    </button>
+    
+    <button class="nav-item" data-page="financeiro">
+      <i class="fa-solid fa-file-invoice-dollar"></i> <span>Financeiro</span>
+    </button>
+    
+    <button class="nav-item" data-page="caixa">
+      <i class="fa-solid fa-cash-register"></i> <span>Caixa</span>
+    </button>
+    
+    <button class="nav-item" data-page="configurações">
+      <i class="fa-solid fa-gears"></i> <span>Configurações</span>
+    </button>
+  </nav>
+</aside>
 
     <main class="conteudo" id="conteudo">
-   
+        <div class="loader">Selecione uma opção no menu...</div>
     </main>
-
   </div>
 
+  <script type="module" src="/javascript/security.js"></script>
+  
+  <script src="/javascript/profissionais.js"></script>
+  <script src="javascript/dashboard.js"></script>
+  <script src="javascript/caixa.js"></script>
+  <script src="javascript/financeiro.js"></script>
+  <script src="javascript/atendimentos.js"></script>
+  <script src="javascript/agendamentos.js"></script>
+  <script src="javascript/pacientes.js"></script>
   <script src="javascript/home.js"></script>
 </body>
-
-</html>
+</html> 

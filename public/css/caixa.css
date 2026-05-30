@@ -1,188 +1,170 @@
-/* ===============================
-   RESET GLOBAL
-================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+/* ==========================================================================
+   MÓDULO FINANCEIRO (VERSÃO COMPATÍVEL COM SEU HTML)
+   ========================================================================== */
+
+/* Container Principal */
+.caixa-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8fafc; /* Fundo sutil para destacar os cards */
+    border-radius: 15px;
 }
 
-body {
-  background: #2e6b50;
-  padding: 40px;
-  color: #2e6b50;
+.caixa-container h1 {
+    color: #2e6b50;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid #40916c;
+    display: inline-block;
+    padding-bottom: 5px;
 }
 
-/* ===============================
-   TÍTULO PRINCIPAL
-================================ */
-h1 {
-  margin-bottom: 30px;
-  font-size: 60px;
-  font-weight: 900;
-  color: #ffffff;
-  text-shadow: #000000;
-  
+/* ESTILIZAÇÃO DOS CARDS (Abertura, Info e Formulário) */
+.card-caixa, 
+.caixa-info, 
+.pagamento-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    margin-bottom: 25px;
+    transition: transform 0.2s ease;
 }
 
-/* ===============================
-   CARDS
-================================ */
-.card-caixa,
-.pagamento-form,
-.caixa-info {
-  background: rgb(255, 255, 255);
-  padding: 30px;
-  border-radius: 12px;
-  border: 1px solid#000000;
-  box-shadow: 0 8px 24px rgba(12, 12, 12, 0.04);
-  margin-bottom: 30px;
-  transition: 0.2s ease;
+.card-caixa:hover, 
+.pagamento-form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
-.card-caixa:hover,
-.pagamento-form:hover,
-.caixa-info:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-/* ===============================
-   SUBTÍTULOS
-================================ */
+/* SUBTÍTULOS */
 h2 {
-  margin-bottom: 25px;
-  font-size: 25px;
-  font-weight: 700;
-  color: #000000;
+    color: #334155;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-/* ===============================
-   CAMPOS
-================================ */
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #000000;
-  margin-top: 18px;
+h2::before {
+    content: "";
+    width: 5px;
+    height: 20px;
+    background: #40916c;
+    border-radius: 10px;
 }
 
-input,
-select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #161616;
-  border-radius: 8px;
-  font-size: 16px;
-  background: #f8fafc;
-  transition: all 0.2s ease;
+/* CAMPOS E LABELS */
+.caixa-container label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #475569;
+    font-size: 0.9rem;
+    text-transform: uppercase;
 }
 
-input:focus,
-select:focus {
-  outline: none;
-  border-color: #2e6b50;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(137, 248, 180, 0.15);
+.caixa-container input, 
+.caixa-container select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #f1f5f9;
+    transition: all 0.2s ease;
 }
 
-/* ===============================
-   BOTÕES
-================================ */
-button {
-  margin-top: 22px;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: all 0.2s ease;
+.caixa-container input:focus, 
+.caixa-container select:focus {
+    outline: none;
+    border-color: #40916c;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(64, 145, 108, 0.1);
 }
 
-/* Primário */
-#btnAbrirCaixa {
-  background: #15803d;
-  color: #ffffff;
-}
-
-#btnAbrirCaixa:hover {
-  background: #15803d;
-  transform: translateY(-1px);
-}
-
-/* Sucesso */
-#btnRegistrarPagamento {
-  background: #16a34a;
-  color: #ffffff;
-}
-
-#btnRegistrarPagamento:hover {
-  background: #15803d;
-  transform: translateY(-1px);
-}
-
-/* Perigo */
-#btnFecharCaixa {
-  background: #dc2626;
-  color: #ffffff;
-  margin-left: 12px;
-}
-
-#btnFecharCaixa:hover {
-  background: #b91c1c;
-  transform: translateY(-1px);
-}
-
-/* ===============================
-   INFORMAÇÕES DO CAIXA
-================================ */
+/* INFO DO CAIXA (Sessão de Dados) */
 .caixa-info p {
-  margin-bottom: 10px;
-  font-size: 16px;
-  color: rgb(165, 37, 37);
-  font-weight: 600;
-  
+    margin-bottom: 12px;
+    font-size: 1rem;
+    color: #64748b;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 8px;
 }
 
 .caixa-info strong {
- 
-  color: #000000;
-  font-weight: 600;
-   font-size: 16px;
+    color: #1e293b;
+    margin-right: 5px;
 }
 
+.caixa-info span {
+    font-family: 'Courier New', Courier, monospace; /* Estilo de cupom fiscal */
+    font-weight: 700;
+    color: #2e6b50;
+}
 
+/* BOTÕES */
+.caixa-container button {
+    width: 100%; /* Botões ocupam a largura total para melhor clique */
+    padding: 14px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
 
-/* ===============================
-   MENSAGEM
-================================ */
+/* Botão Abrir e Registrar (Verdes) */
+#btnAbrirCaixa, 
+#btnRegistrarPagamento {
+    background-color: #2e6b50;
+    color: #ffffff;
+}
+
+#btnAbrirCaixa:hover, 
+#btnRegistrarPagamento:hover {
+    background-color: #1b4332;
+}
+
+/* Botão Fechar (Vermelho) */
+#btnFecharCaixa {
+    background-color: #dc2626;
+    color: #ffffff;
+}
+
+#btnFecharCaixa:hover {
+    background-color: #991b1b;
+}
+
+/* Layout dos Botões de Ação */
+.acoes-caixa {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* MENSAGEM DE FEEDBACK */
 #mensagem {
-  margin-top: 18px;
-  font-weight: 600;
-  font-size: 14px;
-  color: #16a34a;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 600;
+    color: #059669;
 }
 
-/* ===============================
-   RESPONSIVO
-================================ */
-@media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
-
-  .card-caixa,
-  .pagamento-form,
-  .caixa-info {
-    padding: 20px;
-  }
-
-  button {
-    width: 100%;
-    margin-left: 0 !important;
-  }
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .acoes-caixa {
+        grid-template-columns: 1fr;
+    }
 }

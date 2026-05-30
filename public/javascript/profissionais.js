@@ -1,211 +1,260 @@
-document.addEventListener('DOMContentLoaded', () => {
+(function () {
+  let editandoId = null;
 
-  verificarPermissaoBotao();
-  carregarProfissionais();
+  /* ==========================================================================
+     INICIALIZAÇÃO
+  ========================================================================== */
+  window.initProfissionais = async function () {
+    console.log('Inicializando profissionais...');
 
-  const btnNovo = document.getElementById('btnNovoProfissional');
-  const btnCancelar = document.getElementById('cancelarProfissional');
-  const btnSalvar = document.getElementById('salvarProfissional');
+    await carregarProfissionais();
+    await verificarPermissaoBotao();
 
-  if (btnNovo) btnNovo.addEventListener('click', abrirModal);
-  if (btnCancelar) btnCancelar.addEventListener('click', fecharModal);
-  if (btnSalvar) btnSalvar.addEventListener('click', salvarProfissional);
+    vincularEventos();
+  };
 
-});
+  /* ==========================================================================
+     EVENTOS
+  ========================================================================== */
+  function vincularEventos() {
+    const modal = document.getElementById('modalProfissional');
+    const btnNovo = document.getElementById('btnNovoProfissional');
+    const btnSalvar = document.querySelector('.prof-btn-salvar');
+    const btnCancelar = document.querySelector('.prof-btn-cancelar');
 
+    if (btnNovo) btnNovo.onclick = abrirModalNovo;
+    if (btnSalvar) btnSalvar.onclick = salvarProfissional;
+    if (btnCancelar) btnCancelar.onclick = fecharModal;
 
-/* =========================
-   VERIFICAR PERMISSÃO
-========================= */
-function verificarPermissaoBotao() {
-
-  fetch('/api/me', { credentials: 'include' })
-    .then(res => {
-
-      if (!res.ok) throw new Error();
-
-      return res.json();
-
-    })
-    .then(usuario => {
-
-      const botao = document.getElementById('btnNovoProfissional');
-
-      if (!botao) return;
-
-      if (usuario.nivel !== 'admin') {
-
-        botao.disabled = true;
-        botao.style.opacity = '0.5';
-        botao.style.cursor = 'not-allowed';
-        botao.title = 'Apenas administradores podem cadastrar profissionais';
-
-      }
-
-    })
-    .catch(() => console.log('Erro ao verificar usuário'));
-
-}
-
-
-/* =========================
-   LISTAR PROFISSIONAIS
-========================= */
-function carregarProfissionais() {
-
-  fetch('/api/profissionais', { credentials: 'include' })
-    .then(res => {
-
-      if (!res.ok) throw new Error();
-
-      return res.json();
-
-    })
-    .then(lista => renderizarTabela(lista))
-    .catch(() => alert('Erro ao carregar profissionais'));
-
-}
-
-
-function renderizarTabela(lista) {
-
-  const tbody = document.getElementById('listaProfissionais');
-
-  if (!tbody) return;
-
-  tbody.innerHTML = '';
-
-  if (!lista.length) {
-
-    tbody.innerHTML = `
-      <tr>
-        <td colspan="4" style="text-align:center">
-          Nenhum profissional cadastrado
-        </td>
-      </tr>
-    `;
-
-    return;
+    if (modal) {
+      modal.onclick = function (e) {
+        if (e.target === modal) fecharModal();
+      };
+    }
   }
 
-  lista.forEach(p => {
+  /* ==========================================================================
+     MODAL
+  ========================================================================== */
+  function abrirModalNovo() {
+    editandoId = null;
 
-    const tr = document.createElement('tr');
+    const titulo = document.querySelector('.prof-form h2');
+    if (titulo) titulo.textContent = 'Novo Profissional';
 
-    tr.innerHTML = `
-      <td>${p.nome}</td>
-      <td>${p.especialidade}</td>
-      <td>${p.ativo ? 'Ativo' : 'Inativo'}</td>
-      <td>${formatarData(p.criado_em)}</td>
-    `;
-
-    tbody.appendChild(tr);
-
-  });
-
-}
-
-
-function formatarData(data) {
-
-  if (!data) return '-';
-
-  return new Date(data).toLocaleDateString('pt-BR');
-
-}
-
-
-/* =========================
-   MODAL
-========================= */
-function abrirModal() {
-
-  const modal = document.getElementById('modalProfissional');
-
-  if (modal) modal.classList.add('ativo');
-
-  limparFormulario();
-
-}
-
-
-function fecharModal() {
-
-  const modal = document.getElementById('modalProfissional');
-
-  if (modal) modal.classList.remove('ativo');
-
-}
-
-
-function limparFormulario() {
-
-  const nome = document.getElementById('nome');
-  const especialidade = document.getElementById('especialidade');
-  const ativo = document.getElementById('ativo');
-
-  if (nome) nome.value = '';
-  if (especialidade) especialidade.value = '';
-  if (ativo) ativo.value = '1';
-
-}
-
-
-/* =========================
-   SALVAR PROFISSIONAL
-========================= */
-function salvarProfissional() {
-
-  const nome = document.getElementById('nome')?.value.trim();
-  const especialidade = document.getElementById('especialidade')?.value.trim();
-  const ativo = document.getElementById('ativo')?.value;
-  const email = document.getElementById('email')?.value.trim();
-  const senha = document.getElementById('senha')?.value.trim();
-  const nivel = document.getElementById('nivel')?.value;
-
-  if (!nome || !especialidade || !email || !senha) {
-
-    alert('Preencha todos os campos obrigatórios');
-    return;
-
+    limparFormulario();
+    abrirModal();
   }
 
-  fetch('/api/profissionais', {
+  function abrirModal() {
+    const modal = document.getElementById('modalProfissional');
+    if (modal) modal.style.display = 'flex';
+  }
 
-    method: 'POST',
-    credentials: 'include',
-    headers: { 'Content-Type': 'application/json' },
+  function fecharModal() {
+    const modal = document.getElementById('modalProfissional');
 
-    body: JSON.stringify({
-      nome,
-      especialidade,
-      ativo,
-      email,
-      senha,
-      nivel
-    })
+    if (modal) {
+      modal.style.display = 'none';
+      limparFormulario();
 
-  })
-  .then(res => {
-
-    if (!res.ok) return res.json().then(err => { throw err });
-
-    return res.json();
-
-  })
-  .then(retorno => {
-
-    if (!retorno.sucesso) {
-
-      alert(retorno.erro || 'Erro ao salvar');
-      return;
-
+      const titulo = document.querySelector('.prof-form h2');
+      if (titulo) titulo.textContent = 'Novo Profissional';
     }
 
-    fecharModal();
-    carregarProfissionais();
+    editandoId = null;
+  }
 
-  })
-  .catch(() => alert('Erro de conexão'));
+  function limparFormulario() {
+    const campos = {
+      '.prof-input-nome': '',
+      '.prof-input-especialidade': '',
+      '.prof-input-email': '',
+      '.prof-input-senha': '',
+      '.prof-select-ativo': '1',
+      '.prof-select-nivel': 'profissional'
+    };
 
-}
+    Object.entries(campos).forEach(([selector, valor]) => {
+      const campo = document.querySelector(selector);
+      if (campo) campo.value = valor;
+    });
+  }
+
+  /* ==========================================================================
+     PERMISSÃO
+  ========================================================================== */
+  async function verificarPermissaoBotao() {
+    const botao = document.getElementById('btnNovoProfissional');
+    if (!botao) return;
+
+    try {
+      const res = await fetch('/api/me', {
+        credentials: 'include'
+      });
+
+      const usuario = await res.json();
+
+      if (usuario.nivel !== 'admin') {
+        botao.disabled = true;
+        botao.style.opacity = '0.5';
+        botao.title = 'Apenas administradores';
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  /* ==========================================================================
+     LISTAR
+  ========================================================================== */
+  async function carregarProfissionais() {
+    try {
+      const res = await fetch('/api/profissionais', {
+        credentials: 'include'
+      });
+
+      const profissionais = await res.json();
+      renderizarTabela(profissionais);
+
+    } catch (err) {
+      console.error('Erro ao carregar profissionais:', err);
+    }
+  }
+
+  function renderizarTabela(lista) {
+    const tbody = document.getElementById('listaProfissionais');
+    if (!tbody) return;
+
+    tbody.innerHTML = lista.map(prof => `
+      <tr>
+        <td>${prof.nome || ''}</td>
+        <td>${prof.especialidade || ''}</td>
+        <td>
+          <span class="${Number(prof.ativo) ? 'status-ativo' : 'status-inativo'}">
+            ${Number(prof.ativo) ? 'Ativo' : 'Inativo'}
+          </span>
+        </td>
+        <td>${prof.email || ''}</td>
+        <td>
+          <button class="btn-editar" data-id="${prof.id}">
+            Editar
+          </button>
+
+          <button class="btn-excluir" data-id="${prof.id}">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    `).join('');
+
+    tbody.querySelectorAll('.btn-editar').forEach(btn => {
+      btn.onclick = () => editarProfissional(btn.dataset.id);
+    });
+
+    tbody.querySelectorAll('.btn-excluir').forEach(btn => {
+      btn.onclick = () => excluirProfissional(btn.dataset.id);
+    });
+  }
+
+  /* ==========================================================================
+     EDITAR
+  ========================================================================== */
+  async function editarProfissional(id) {
+    try {
+      const res = await fetch(`/api/profissionais/${id}`, {
+        credentials: 'include'
+      });
+
+      const prof = await res.json();
+
+      editandoId = id;
+
+      document.querySelector('.prof-form h2').textContent = 'Editar Profissional';
+      document.querySelector('.prof-input-nome').value = prof.nome || '';
+      document.querySelector('.prof-input-especialidade').value = prof.especialidade || '';
+      document.querySelector('.prof-input-email').value = prof.email || '';
+      document.querySelector('.prof-input-senha').value = '';
+      document.querySelector('.prof-select-ativo').value = prof.ativo;
+      document.querySelector('.prof-select-nivel').value = prof.nivel;
+
+      abrirModal();
+
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao carregar profissional');
+    }
+  }
+
+  /* ==========================================================================
+     SALVAR
+  ========================================================================== */
+  async function salvarProfissional(e) {
+    if (e) e.preventDefault();
+
+    const dados = {
+      nome: document.querySelector('.prof-input-nome').value.trim(),
+      especialidade: document.querySelector('.prof-input-especialidade').value.trim(),
+      email: document.querySelector('.prof-input-email').value.trim(),
+      senha: document.querySelector('.prof-input-senha').value.trim(),
+      nivel: document.querySelector('.prof-select-nivel').value,
+      ativo: Number(document.querySelector('.prof-select-ativo').value)
+    };
+
+    if (!dados.nome || !dados.especialidade || !dados.email) {
+      alert('Preencha os campos obrigatórios');
+      return;
+    }
+
+    const url = editandoId
+      ? `/api/profissionais/${editandoId}`
+      : '/api/profissionais';
+
+    const metodo = editandoId ? 'PUT' : 'POST';
+
+    try {
+      const res = await fetch(url, {
+        method: metodo,
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+      });
+
+      if (!res.ok) {
+        const erro = await res.json();
+        alert(erro.erro || 'Erro ao salvar');
+        return;
+      }
+
+      fecharModal();
+      await carregarProfissionais();
+
+    } catch (err) {
+      console.error(err);
+      alert('Erro de conexão');
+    }
+  }
+
+  /* ==========================================================================
+     EXCLUIR
+  ========================================================================== */
+  async function excluirProfissional(id) {
+    if (!confirm('Deseja excluir este profissional?')) return;
+
+    try {
+      await fetch(`/api/profissionais/${id}`, {
+        method: 'DELETE',
+        credentials: 'include'
+      });
+
+      await carregarProfissionais();
+
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao excluir');
+    }
+  }
+
+})();

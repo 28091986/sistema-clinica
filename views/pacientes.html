@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Pacientes</title>
-  <link rel="stylesheet" href="/css/pacientes.css">
-</head>
-<script type="module" src="/javascript/security.js"></script>
-<body>
-
-<header>
-  <h1>Pacientes</h1>
-  <button id="btnNovo">+ Novo Paciente</button>
+<div class="pacientes-page">
+<header class="header-pacientes">
+  <h1>Gerenciamento de Pacientes</h1>
+  <button id="btnNovo" class="btn-principal">+ Novo Paciente</button>
 </header>
 
-<section>
-  <input type="text" id="busca" placeholder="Buscar paciente...">
+<section class="filtros">
+  <input type="text" id="busca" placeholder="Buscar por nome, telefone ou email...">
 </section>
 
 <div class="table-wrapper">
@@ -25,10 +16,10 @@
         <th>Telefone</th>
         <th>Email</th>
         <th>Rua</th>
-         <th>N°</th>
-          <th>Bairro</th>
-           <th>Cidade</th>
-            <th>Estado</th>
+        <th>N°</th>
+        <th>Bairro</th>
+        <th>Cidade</th>
+        <th>Estado</th>
         <th>Nascimento</th>
         <th>Status</th>
         <th>Ações</th>
@@ -38,34 +29,29 @@
   </table>
 </div>
 
-<!-- MODAL -->
 <div id="modalPaciente" class="modal">
   <section id="formPaciente" class="form">
     <h2>Novo Paciente</h2>
-
-    <input type="text" id="nome" placeholder="Nome *">
-    <input type="text" id="telefone" placeholder="Telefone">
-    <input type="email" id="email" placeholder="Email">
-    <input type="text" id="rua" placeholder="Endereço">
-     <input type="text" id="numero" placeholder="Numero">
-      <input type="text" id="bairro" placeholder="Bairro">
-       <input type="text" id="cidade" placeholder="Cidade">
-        <input type="text" id="estado" placeholder="Endereço">
-
-    <label for="data_nascimento">Data de nascimento </label>
-    <input type="date" id="data_nascimento">
-
-   
-
+    <div class="grid-form">
+        <input type="text" id="nome" placeholder="Nome *">
+        <input type="text" id="telefone" placeholder="Telefone">
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="rua" placeholder="Rua">
+        <input type="text" id="numero" placeholder="Nº">
+        <input type="text" id="bairro" placeholder="Bairro">
+        <input type="text" id="cidade" placeholder="Cidade">
+        <input type="text" id="estado" placeholder="Estado">
+        <div class="input-group">
+            <label for="data_nascimento">Data de Nascimento</label>
+            <input type="date" id="data_nascimento">
+        </div>
+    </div>
     <div class="acoes">
-      <button id="salvarPaciente" type="button">Salvar</button>
-      <button id="cancelarPaciente" type="button">Cancelar</button>
+      <button id="salvarPaciente" class="btn-save">Salvar</button>
+      <button id="cancelarPaciente" class="btn-cancel">Cancelar</button>
     </div>
   </section>
 </div>
+
 <div id="toastContainer" class="toast-container"></div>
-
-
-<script src="javascript/pacientes.js"></script>
-</body>
-</html>
+</div>

@@ -33,7 +33,7 @@ app.use(session({
   }
 }));
 
-
+app.use('/views', express.static(path.join(__dirname, 'views')));
 
 
 /* ========== CACHE ========== */
@@ -70,6 +70,8 @@ app.get('/financeiro', verificarLogin, noCache, (req, res) =>
   res.sendFile(path.join(__dirname, 'views', 'financeiro.html'))
 );
 
+
+
 app.get('/historicoConsultas', verificarLogin, noCache, (req, res) =>
   res.sendFile(path.join(__dirname, 'views', 'historicoConsultas.html'))
 );
@@ -104,6 +106,9 @@ import atendimentosRoutes from './routes/atendimentos.js';
 import financeiroRoutes from './routes/financeiro.js';
 import caixaRoutes from './routes/caixa.js';
 import pagamentosRoutes from './routes/pagamentos.js';
+import dashboardRoutes from './routes/dashboard.js';
+
+
 
 import recibosRoutes from './routes/recibos.js'
 
@@ -121,6 +126,12 @@ app.use('/api/pagamentos', pagamentosRoutes);
 app.use('/api/recibos', recibosRoutes);
 
 app.use('/api/me', meRoutes);
+
+// rotas para os cards 
+app.use('/api/dashboard', dashboardRoutes);
+
+
+
 
 /* ========== SERVER ========== */
 const PORT = process.env.PORT || 3000;

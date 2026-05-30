@@ -244,4 +244,30 @@ router.delete('/:id', verificarLogin, async (req, res) => {
   }
 });
 
+router.get('/minhas-consultas', verificarLogin, async (req, res) => {
+  const usuario = req.session.usuario;
+
+  try {
+    const [rows] = await db.query(`
+      SELECT 
+        c.id,
+        c.data,
+        c.hora,
+        p.nome AS paciente_nome
+      FROM consultas c
+      JOIN pacientes p ON p.id = c.paciente_id
+      WHERE c.profissional_id = ?
+        AND DATE(c.data) = CURDATE()
+        AND c.status = 'Agendada'
+      ORDER BY c.hora ASC
+    `, [usuario.profissional_id]);
+
+    res.json(rows);
+
+  } catch (erro) {
+    console.error(erro);
+    res.status(500).json({ erro: 'Erro ao buscar consultas do profissional' });
+  }
+});
+
 export default router;

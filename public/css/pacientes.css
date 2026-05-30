@@ -1,401 +1,296 @@
 /* =========================
-   RESET
+   PACIENTES PAGE
 ========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-/* =========================
-   BODY
-========================= */
-body {
-  background: #2e6b50;
-  padding: 30px;
-  color: #000000;
+.pacientes-page {
+  --verde-primario: #2e6b50;
+  --verde-secundario: #40916c;
+  --verde-claro: #d8f3dc;
+  --cinza-bg: #f8fafc;
+  --borda: #e2e8f0;
+  --texto: #334155;
 }
 
 /* =========================
    HEADER
 ========================= */
-header {
-  width: 96%;
-  background: #ffffff;
-  padding: 18px 24px;
-  border-radius: 12px;
-  box-shadow: 0 14px 10px rgba(0,0,0,0.06);
+
+.pacientes-page .header-pacientes {
+  background: #fff;
+  padding: 22px 28px;
+  border-radius: 16px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
-  margin-left: 40px;
-  margin-bottom: 25px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
 }
 
-header h1 {
-  font-size: 26px;
-  color: #2e6b50;
-}
-
-header button {
-  background: #2e6b50;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  font-size: 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-header button:hover {
-  background:#40916c;
+.pacientes-page .header-pacientes h1 {
+  font-size: 28px;
+  color: var(--verde-primario);
+  font-weight: 700;
 }
 
 /* =========================
-   BUSCA
+   BOTÃO NOVO
 ========================= */
-section {
-  margin-bottom: 30px;
-  margin-left: 40px;
+
+.pacientes-page .btn-principal {
+  background: var(--verde-primario);
+  color: white;
+  border: none;
+
+  padding: 12px 22px;
+  border-radius: 10px;
+
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-#busca {
-  width: 320px;
-  padding: 10px 14px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
-  font-size: 14px;
+.pacientes-page .btn-principal:hover {
+  background: var(--verde-secundario);
+  transform: translateY(-2px);
 }
 
-#busca:focus {
+/* =========================
+   FILTRO
+========================= */
+
+.pacientes-page .filtros {
+  margin-bottom: 20px;
+}
+
+.pacientes-page #busca {
+  width: 100%;
+  padding: 14px 18px;
+
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+
+  font-size: 15px;
   outline: none;
-  border-color: #40916c;
-  box-shadow: 0 0 0 2px #40916c;
+}
+
+.pacientes-page #busca:focus {
+  border-color: var(--verde-secundario);
 }
 
 /* =========================
    TABELA
 ========================= */
-.table-wrapper {
+
+.pacientes-page .table-wrapper {
+  background: white;
+  border-radius: 16px;
   overflow-x: auto;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+
+  margin-bottom: 40px;
+  padding-bottom: 20px;
 }
 
-table {
-  width: 96%;
+.pacientes-page table {
+  width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  margin-left: 40px;
 }
 
-thead {
-  background: #17ad6a;
-  color: #fff;
+.pacientes-page thead {
+  background: #f8fafc;
 }
 
-thead th {
-  padding: 14px;
+.pacientes-page th {
+  padding: 16px;
   text-align: left;
-  font-size: 14px;
-}
-
-tbody td {
-  padding: 14px;
-  border-bottom: 1px solid #e5e7eb;
-  font-size: 14px;
-}
-
-tbody tr:hover {
-  background: #f0f4ff;
-}
-
-tbody tr:last-child td {
-  border-bottom: none;
-}
-
-/* =========================
-   STATUS (BADGES)
-========================= */
-.status {
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
+  color: var(--verde-primario);
+  font-size: 13px;
   text-transform: uppercase;
 }
 
-.status.regular {
-  background: #dcfce7;
-  color: #166534;
+.pacientes-page td {
+  padding: 16px;
+  border-top: 1px solid #edf2f7;
+  font-size: 14px;
 }
 
-.status.inadimplente {
-  background: #fee2e2;
-  color: #991b1b;
-}
-
-.status.bloqueado {
-  background: #e5e7eb;
-  color: #374151;
-}
-
-/* =========================
-   BOTÕES DA TABELA
-========================= */
-/* =========================
-   BOTÕES DE AÇÃO NA TABELA
-========================= */
-td button {
-  border: none;
-  padding: 8px 16px;       /* mantém altura e largura visual uniforme */
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  margin-right: 8px;       /* espaçamento entre os botões */
-  min-width: 80px;         /* largura mínima igual para todos */
-  text-align: center;
-  transition: 0.2s;
-  display: inline-block;
-  margin-top: 2px;
-}
-
-/* cores */
-.btn-editar {
-  background: #28664a;
-  color: #ffffff;
-}
-
-.btn-editar:hover {
-  background: #40916c;
-}
-
-.btn-excluir {
-  background: #e81818;
-  color: #ffffff;
-}
-
-.btn-excluir:hover {
-  background: #c23616;
-}
-
-/* último botão da célula não precisa de margin */
-td button:last-child {
-  margin-right: 0;
-}
-
-
-.btn-editar:hover,
-.btn-excluir:hover {
-  opacity: 0.85;
+.pacientes-page tbody tr:hover {
+  background: #f8fafc;
 }
 
 /* =========================
    MODAL
 ========================= */
-.modal {
+
+.pacientes-page .modal {
   position: fixed;
   inset: 0;
+
   background: rgba(0,0,0,0.45);
+
   display: none;
-  align-items: center;
   justify-content: center;
-  z-index: 1000;
+  align-items: center;
+
+  z-index: 9999;
 }
 
-.modal.ativo {
+.pacientes-page .modal.ativo {
   display: flex;
 }
 
 /* =========================
-   FORMULÁRIO
+   FORM
 ========================= */
-.form {
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 22px;
-  width: 100%;
-  max-width: 600px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  animation: slideDown 0.25s ease;
+
+.pacientes-page .form {
+  background: white;
+  width: 900px;
+  max-width: 95%;
+
+  border-radius: 18px;
+  padding: 30px;
+
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
 }
 
-@keyframes slideDown {
-  from {
-    transform: translateY(-15px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.pacientes-page .form h2 {
+  color: var(--verde-primario);
+  margin-bottom: 20px;
+  font-size: 24px;
 }
 
-.form h2 {
-  margin-bottom: 16px;
-  color: #1f2937;
+/* =========================
+   GRID FORM
+========================= */
+
+.pacientes-page .grid-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
 }
 
-/* Inputs */
-.form input {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 12px;
-  border-radius: 8px;
-  border: 1px solid #d1d5db;
+.pacientes-page .grid-form input {
+  padding: 12px 14px;
+  border: 1px solid var(--borda);
+  border-radius: 10px;
   font-size: 14px;
 }
 
-.form input:focus {
+.pacientes-page .grid-form input:focus {
+  border-color: var(--verde-secundario);
   outline: none;
-  border-color: #2e6b50;
-  box-shadow: 0 0 0 2px rgba(#2e6b50);
 }
 
 /* =========================
-   AÇÕES DO FORM
+   INPUT GROUP
 ========================= */
-.form .acoes {
+
+.pacientes-page .input-group {
   display: flex;
-  gap: 10px;
-  margin-top: 12px;
+  flex-direction: column;
+}
+
+.pacientes-page .input-group label {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* =========================
+   AÇÕES
+========================= */
+
+.pacientes-page .acoes {
+  display: flex;
   justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
 }
 
-.form button {
-  padding: 10px 18px;
-  border-radius: 8px;
+/* SALVAR */
+.pacientes-page .btn-save {
+  background: var(--verde-primario);
+  color: white;
   border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
   cursor: pointer;
+}
+
+/* =========================
+   BOTÕES DA TABELA
+========================= */
+
+.pacientes-page .btn-editar,
+.pacientes-page .btn-excluir {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
   font-weight: 600;
-  font-size: 14px;
+  transition: 0.25s;
+  margin-right: 6px;
 }
 
-/* Salvar */
-#salvarPaciente {
-  background: #2e6b50;
-  color: #ffffff;
+/* EDITAR */
+.pacientes-page .btn-editar {
+  background: #dbeafe;
+  color: #1d4ed8;
 }
 
-#salvarPaciente:hover {
-  background: #2e6b50;
+.pacientes-page .btn-editar:hover {
+  background: #bfdbfe;
+  transform: translateY(-1px);
 }
 
-/* Cancelar */
-#cancelarPaciente {
-  background: #e5e7eb;
-  color: #2e6b50;
+/* EXCLUIR */
+.pacientes-page .btn-excluir {
+  background: #fee2e2;
+  color: #dc2626;
 }
 
-#cancelarPaciente:hover {
-  background: #d1d5db;
+.pacientes-page .btn-excluir:hover {
+  background: #fecaca;
+  transform: translateY(-1px);
+}
+
+/* CANCELAR */
+.pacientes-page .btn-cancel {
+  background: #e2e8f0;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.pacientes-page .toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
 }
 
 /* =========================
    RESPONSIVO
 ========================= */
-@media (max-width: 768px) {
-  body {
-    padding: 16px;
+
+@media (max-width: 900px) {
+  .pacientes-page .grid-form {
+    grid-template-columns: 1fr;
   }
 
-  header {
+  .pacientes-page .header-pacientes {
     flex-direction: column;
+    gap: 15px;
     align-items: flex-start;
-    gap: 12px;
-  }
-
-  #busca {
-    width: 100%;
-  }
-}
-/* =========================
-   TOAST
-========================= */
-.toast-container {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.toast {
-  min-width: 260px;
-  padding: 14px 18px;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  animation: toastSlide 0.3s ease, toastFadeOut 0.3s ease 2.7s forwards;
-}
-
-.toast.sucesso {
-  background: #16a34a;
-}
-
-.toast.erro {
-  background: #dc2626;
-}
-
-.toast.info {
-  background: #2e6b50;
-}
-
-
-/* =========================
-   LABEL PADRONIZADA
-========================= */
-.form label {
-  display: block;
-  margin: 6px 0 4px;
-  padding-left: 12px; /* 🔑 alinha com o texto do input */
-  font-size: 14px;
-  color: #9ca3af;
-  font-weight: 400;
-}
-
-
-/* Placeholder igual à label */
-.form input::placeholder {
-  color: #9ca3af;
-  font-size: 14px;
-}
-
-/* Quando o input está em foco */
-.form input:focus::placeholder {
-  color: transparent;
-}
-
-/* Quando o input está em foco, destaca a label */
-.form input:focus + label,
-.form label:has(+ input:focus) {
-  color: #2e6b50;
-  font-weight: 600;
-}
-
-@keyframes toastSlide {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes toastFadeOut {
-  to {
-    opacity: 0;
-    transform: translateX(100%);
   }
 }
